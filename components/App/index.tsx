@@ -1,5 +1,7 @@
 import { Card, Layout, Row, Typography, Col } from "antd"
+import api from "../../api"
 import classes from "./style.module.scss"
+import { IServUsers } from "../../api/user/getUsers"
 
 const { Meta } = Card
 
@@ -19,6 +21,14 @@ export default function App() {
       img: "/user_icon.png",
     },
   ]
+
+  async function test() {
+    const res: IServUsers = await api.user.getUsers()
+
+    console.log(res.data)
+  }
+
+  test()
 
   return (
     <Layout>
