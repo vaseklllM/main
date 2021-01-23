@@ -6,9 +6,7 @@ export default function Home() {
     <div>
       <Head>
         <title>Все приложения в одном месте</title>
-        <link rel='icon' href='/favicon.ico' />
       </Head>
-
       <App />
     </div>
   )
