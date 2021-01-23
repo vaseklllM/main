@@ -5,6 +5,8 @@ import { IActionLogin } from "../../store/auth/actions/login"
 import { IStoreAuthData } from "../../store/auth/reducer"
 import { status } from "../../utils/status"
 import { connect } from "react-redux"
+import api from "../../api"
+import { IServActiveUserData } from "../../api/user/getActiveUserData"
 
 interface Props {
   children: ReactElement
@@ -28,7 +30,15 @@ function DownloadMainData(props: Props): ReactElement {
   async function getUserInfo() {
     changeDataStatus(status.loading)
 
-    console.log(localStorage.token)
+    const res: IServActiveUserData = await api.user.getUserDataByToken()
+
+    // localStorage.token = undefined
+
+    if (res.ok) {
+      console.log(res.data.user)
+    } else {
+      console.log(res.data.message)
+    }
   }
 
   return children

@@ -24,11 +24,12 @@ export default async function fetchData(url: string, params?: Iparams): Promise<
 
     let data = (await res.json()) || undefined
 
-    if (res.ok) {
-      return await { ok: true, data }
-    } else return { ok: false, data }
+    if (res.ok && res.status !== 401) {
+      return { ok: true, data }
+    } else {
+      return { ok: false, data }
+    }
   } catch (error) {
-    // console.error(error)
     return { ok: false }
   }
 }

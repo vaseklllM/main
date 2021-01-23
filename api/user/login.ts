@@ -1,13 +1,10 @@
 import fetchData, { IfetchDataParams } from "../fetchData"
+import { IServUser } from "./interface"
 
 interface IData {
   message: string
   token?: string
-  user: {
-    email: string
-    nickname: string
-    _id: string
-  }
+  user: IServUser
 }
 
 export interface IServLogin extends IfetchDataParams {
@@ -15,7 +12,10 @@ export interface IServLogin extends IfetchDataParams {
 }
 
 // вход в акканут
-export default async function login(email: string, password: string): Promise<IServLogin> {
+export default async function login(
+  email: string,
+  password: string
+): Promise<IServLogin> {
   const res: IServLogin = await fetchData("api/auth/login", {
     body: { email, password },
     method: "POST",
