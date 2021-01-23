@@ -14,10 +14,13 @@ require("./passport")(passport)
 app.use(cors({ origin: FRONTEND_URL }))
 app.use(bodyParser.json())
 
+require("./routes")(app) // роуты
+
 async function start() {
   try {
     await mongoose.connect(DB_URL, {
       useNewUrlParser: true,
+      useUnifiedTopology: true,
       useFindAndModify: false,
       useCreateIndex: true,
     })
@@ -25,7 +28,9 @@ async function start() {
     app.listen(SERVER_PORT, () => {
       console.log(`---------- localhost:${SERVER_PORT} started ----------`)
     })
+
     createDefData()
+    
   } catch (error) {
     console.log(error)
   }
