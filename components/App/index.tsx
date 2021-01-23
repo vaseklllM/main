@@ -1,6 +1,7 @@
-import { Card, Layout, Row, Typography, Col } from "antd"
-// import api from "../../api"
+import { Card, Layout, Row, Typography, Col, PageHeader } from "antd"
+import Header from "../Header"
 import classes from "./style.module.scss"
+// import api from "../../api"
 // import { IServUsers } from "../../api/user/getUsers"
 
 const { Meta } = Card
@@ -31,28 +32,31 @@ export default function App() {
   // test()
 
   return (
-    <Layout>
-      <Content>
-        <Row justify={"center"}>
-          <Title level={4}>Пользователи</Title>
-        </Row>
-        <div className={classes.users}>
-          <Row gutter={[0, 24]}>
-            {users.map((el, i) => (
-              <Col span={6} xs={24} sm={12} md={8} lg={6} xl={4} xxl={3} key={i}>
-                <Card
-                  className={classes.cart}
-                  hoverable
-                  style={{ maxWidth: 180 }}
-                  cover={<img alt='example' src={el.img} />}
-                >
-                  <Meta title={el.name} description={el.description} />
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </div>
-      </Content>
-    </Layout>
+    <>
+      <Header title='Пользователи' />
+      <Layout className={classes.body}>
+        <Content className={classes.content}>
+          {/* <Row justify='center'>
+            <Title level={4}>Пользователи</Title>
+          </Row> */}
+          <div className={classes.users}>
+            <Row gutter={[0, 24]}>
+              {users.map((el, i) => (
+                <Col span={6} xs={24} sm={12} md={8} lg={6} xl={4} xxl={3} key={i}>
+                  <Card
+                    className={classes.cart}
+                    hoverable
+                    style={{ maxWidth: 180 }}
+                    cover={<img alt='example' src={el.img} />}
+                  >
+                    <Meta title={el.name} description={el.description} />
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </div>
+        </Content>
+      </Layout>
+    </>
   )
 }

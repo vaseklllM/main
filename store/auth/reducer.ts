@@ -1,17 +1,17 @@
 import { status } from "../../utils/status"
 import types from "./types"
 
-interface IAuth {
+export interface IStoreAuth {
   isAuth: boolean
   isAuthStatus: status
 }
 
-const auth: IAuth = {
+const auth: IStoreAuth = {
   isAuth: false,
   isAuthStatus: status.no_data,
 }
 
-export default (state = auth, action): IAuth => {
+export default (state = auth, action): IStoreAuth => {
   const { payload } = action
 
   switch (action.type) {
