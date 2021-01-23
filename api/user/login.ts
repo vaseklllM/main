@@ -3,6 +3,11 @@ import fetchData, { IfetchDataParams } from "../fetchData"
 interface IData {
   message: string
   token?: string
+  user: {
+    email: string
+    nickname: string
+    _id: string
+  }
 }
 
 export interface IServLogin extends IfetchDataParams {

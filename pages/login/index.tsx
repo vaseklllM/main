@@ -1,10 +1,17 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Col, Form, Input, Button, Checkbox, message } from "antd"
 import classes from "./style.module.scss"
 import Body from "../../components/Body"
 import { LoginPageHeader } from "../../components/Headers"
 import api from "../../api"
 import { IServLogin } from "../../api/user/login"
+import { bindActionCreators } from "redux"
+import authActions from "../../store/auth/actions"
+import { connect } from "react-redux"
+import { IActionLogin } from "../../store/auth/actions/login"
+import { IStoreAuthData } from "../../store/auth/reducer"
+import { useRouter } from "next/router"
+import { status } from "../../utils/status"
 
 const layout = {
   labelCol: { span: 8 },
@@ -14,16 +21,30 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 }
 
+interface IProps {
+  login: (payload: IActionLogin) => {}
+  userData: IStoreAuthData
+  userDataStatus: status
+  changeDataStatus: (v: status) => {}
+}
 interface loginValues {
   email: string
   password: string
   remember: boolean
 }
 
-export default function Login() {
-  // console.log(localStorage.token)
+function Login(props: IProps) {
+  const { login, userData, userDataStatus, changeDataStatus } = props
+  const router = useRouter()
+
+  useEffect(() => {
+    if (userData.isAuth && userDataStatus === status.successful) {
+      router.push("/")
+    }
+  }, [userData, userDataStatus])
 
   async function onFinish(values: loginValues) {
+    changeDataStatus(status.loading)
     const { email, password, remember } = values
 
     const key = `login${email}`
@@ -34,10 +55,19 @@ export default function Login() {
     if (res.ok) {
       message.success({ content: res.data.message, key, duration: 2 })
 
-      // if ()
+      localStorage.token = res.data.token
 
-      // console.log(res.data.token)
+      /** удаление токена при выходе или перезагрузке страницы */
+      if (!remember) {
+        window.onbeforeunload = function () {
+          localStorage.token = undefined
+        }
+      }
+
+      login({ ...res.data.user, isAuth: true })
+      changeDataStatus(status.successful)
     } else {
+      changeDataStatus(status.error)
       message.error({ content: res.data.message, key, duration: 2 })
     }
   }
@@ -86,3 +116,19 @@ export default function Login() {
     </>
   )
 }
+
+const mapState = (state) => ({
+  userData: state.auth.data,
+  userDataStatus: state.auth.isAuthStatus,
+})
+
+const mapDispatch = (d) => {
+  const { login, changeDataStatus } = authActions
+  const actions = {
+    login,
+    changeDataStatus,
+  }
+  return bindActionCreators(actions, d)
+}
+
+export default connect(mapState, mapDispatch)(Login)

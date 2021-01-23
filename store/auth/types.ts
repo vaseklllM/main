@@ -1,4 +1,4 @@
 export default {
-  CHENGE_IS_AUTH: "AUTH_CHENGE_IS_AUTH",
-  LOGOUT: "AUTH_LOGOUT" /** выход из аккаунта */,
+  LOGIN: "AUTH_LOGIN",
+  CHANGE_DATA_STATUS: "AUTH_CHANGE_DATA_STATUS",
 }

@@ -7,7 +7,7 @@ import classes from "./style.module.scss"
 
 const { Meta } = Card
 
-export default function App() {
+function App() {
   const { Content } = Layout
   const { Title } = Typography
 
@@ -61,3 +61,5 @@ export default function App() {
     </>
   )
 }
+
+export default App

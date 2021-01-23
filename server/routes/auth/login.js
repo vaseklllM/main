@@ -31,7 +31,17 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, candidate.password)
     if (isMatch) {
       const token = getToken(candidate)
-      res.status(201).json({ message: "Успішна авторизація", token })
+      res
+        .status(201)
+        .json({
+          message: "Успішна авторизація",
+          token,
+          user: {
+            nickname: candidate.nickname,
+            _id: candidate._id,
+            email: candidate.email,
+          },
+        })
     } else {
       res.status(401).json({ message: "Невірний логін або пароль" })
     }
