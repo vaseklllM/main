@@ -1,5 +1,6 @@
 import { Card, Layout, Row, Typography, Col, PageHeader } from "antd"
-import Header from "../Header"
+import Body from "../Body"
+import { MainPageHeader } from "../Headers"
 import classes from "./style.module.scss"
 // import api from "../../api"
 // import { IServUsers } from "../../api/user/getUsers"
@@ -33,8 +34,8 @@ export default function App() {
 
   return (
     <>
-      <Header title='Пользователи' />
-      <Layout className={classes.body}>
+      <MainPageHeader title='Пользователи' />
+      <Body>
         <Content className={classes.content}>
           {/* <Row justify='center'>
             <Title level={4}>Пользователи</Title>
@@ -56,7 +57,7 @@ export default function App() {
             </Row>
           </div>
         </Content>
-      </Layout>
+      </Body>
     </>
   )
 }
