@@ -1,8 +1,24 @@
-const express = require('express')
+const express = require("express")
+const { SERVER_PORT, DB_URL } = require("../../utils/config")
 const app = express()
- 
-app.get('/', function (req, res) {
-  res.send('Hello World')
-})
- 
-app.listen(3001)
+const mongoose = require("mongoose")
+const createDefData = require("../createDefaultData")
+
+async function start() {
+  try {
+    await mongoose.connect(DB_URL, {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+    })
+
+    app.listen(SERVER_PORT, () => {
+      console.log(`---------- localhost:${SERVER_PORT} started ----------`)
+    })
+    createDefData()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+start()
