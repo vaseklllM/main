@@ -1,8 +1,10 @@
 import React from "react"
-import { Col, Form, Input, Button, Checkbox } from "antd"
+import { Col, Form, Input, Button, Checkbox, message } from "antd"
 import classes from "./style.module.scss"
 import Body from "../../components/Body"
 import { LoginPageHeader } from "../../components/Headers"
+import api from "../../api"
+import { IServLogin } from "../../api/user/login"
 
 const layout = {
   labelCol: { span: 8 },
@@ -12,13 +14,32 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 }
 
-export default function Login() {
-  const onFinish = (values: any) => {
-    console.log("Success:", values)
-  }
+interface loginValues {
+  email: string
+  password: string
+  remember: boolean
+}
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo)
+export default function Login() {
+  // console.log(localStorage.token)
+
+  async function onFinish(values: loginValues) {
+    const { email, password, remember } = values
+
+    const key = `login${email}`
+    message.loading({ content: "Вхід...", key })
+
+    const res: IServLogin = await api.user.login(email, password)
+
+    if (res.ok) {
+      message.success({ content: res.data.message, key, duration: 2 })
+
+      // if ()
+
+      // console.log(res.data.token)
+    } else {
+      message.error({ content: res.data.message, key, duration: 2 })
+    }
   }
 
   return (
@@ -32,7 +53,6 @@ export default function Login() {
               name='basic'
               initialValues={{ remember: true }}
               onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
             >
               <Form.Item
                 name='email'
@@ -51,12 +71,12 @@ export default function Login() {
               </Form.Item>
 
               <Form.Item {...tailLayout} name='remember' valuePropName='checked'>
-                <Checkbox>Remember me</Checkbox>
+                <Checkbox>Запам'ятати користувача</Checkbox>
               </Form.Item>
 
               <Form.Item {...tailLayout}>
                 <Button type='primary' htmlType='submit'>
-                  Submit
+                  Ввійти
                 </Button>
               </Form.Item>
             </Form>

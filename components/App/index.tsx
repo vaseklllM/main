@@ -34,7 +34,7 @@ export default function App() {
 
   return (
     <>
-      <MainPageHeader title='Пользователи' />
+      <MainPageHeader title='Користувачі' />
       <Body>
         <Content className={classes.content}>
           {/* <Row justify='center'>

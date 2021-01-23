@@ -12,16 +12,16 @@ router.post("/login", async (req, res) => {
 
   /** валидация */
   if (!email || (typeof email === "string" && email === "")) {
-    res.status(401).json({ message: "Введите email" })
+    res.status(401).json({ message: "Введіть email" })
   }
   if (typeof email !== "string") {
-    res.status(401).json({ message: "Неверный email" })
+    res.status(401).json({ message: "Невірний email" })
   }
   if (!password || (typeof password === "string" && password === "")) {
-    res.status(401).json({ message: "Введите пароль" })
+    res.status(401).json({ message: "Введіть пароль" })
   }
   if (typeof password !== "string") {
-    res.status(401).json({ message: "Пароль должен быть строкой" })
+    res.status(401).json({ message: "Пароль повинен бути текстовим" })
   }
 
   /** Вход в аккаунт */
@@ -31,12 +31,12 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, candidate.password)
     if (isMatch) {
       const token = getToken(candidate)
-      res.status(201).json({ message: "Успешная авторизация", token })
+      res.status(201).json({ message: "Успішна авторизація", token })
     } else {
-      res.status(401).json({ message: "Неверный логин или пароль" })
+      res.status(401).json({ message: "Невірний логін або пароль" })
     }
   } else {
-    res.status(401).json({ message: "Пользователь не зарегистрирован" })
+    res.status(401).json({ message: `Користувач ${email} не зареєстрований` })
   }
 })
 
