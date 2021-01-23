@@ -3,12 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "concurrently \"next dev\" \"npm run startServer\"",
     "build": "next build",
-    "start": "next dev",
-    "start:production": "next start"
+    "start:production": "next start",
+    "startServer": "nodemon server/src/index"
   },
   "dependencies": {
     "antd": "^4.10.3",
+    "concurrently": "^5.3.0",
+    "express": "^4.17.1",
     "next": "10.0.5",
     "next-images": "^1.7.0",
     "react": "17.0.1",
@@ -18,6 +21,7 @@
   "devDependencies": {
     "@types/node": "^14.14.22",
     "@types/react": "^17.0.0",
+    "nodemon": "^2.0.7",
     "typescript": "^4.1.3"
   }
 }
