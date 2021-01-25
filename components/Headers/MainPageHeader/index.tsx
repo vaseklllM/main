@@ -2,6 +2,7 @@ import { ReactElement } from "react"
 import { PageHeader, Button } from "antd"
 import classes from "./style.module.scss"
 import Link from "next/link"
+import LoginButton from "./LoginButton"
 
 interface Props {
   title?: string
@@ -14,11 +15,7 @@ function MainPageHeader(props: Props): ReactElement {
     <PageHeader
       className={classes.header}
       title={title}
-      extra={[
-        <Link key='1' href='/login'>
-          <Button type='primary'>Вхід</Button>
-        </Link>,
-      ]}
+      extra={<LoginButton />}
     ></PageHeader>
   )
 }

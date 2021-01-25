@@ -2,7 +2,6 @@ import { ReactElement, useEffect } from "react"
 import { bindActionCreators } from "redux"
 import authActions from "../../store/auth/actions"
 import { IActionLogin } from "../../store/auth/actions/login"
-import { IStoreAuthData } from "../../store/auth/reducer"
 import { status } from "../../utils/status"
 import { connect } from "react-redux"
 import api from "../../api"
@@ -10,14 +9,12 @@ import { IServActiveUserData } from "../../api/user/getActiveUserData"
 
 interface Props {
   children: ReactElement
-  userData: IStoreAuthData
-  userDataStatus: status
   login: (payload: IActionLogin) => {}
   changeDataStatus: (v: status) => {}
 }
 
 function DownloadMainData(props: Props): ReactElement {
-  const { children, userData, userDataStatus, changeDataStatus, login } = props
+  const { children, changeDataStatus, login } = props
 
   useEffect(() => {
     downloadMainData()
@@ -32,22 +29,17 @@ function DownloadMainData(props: Props): ReactElement {
 
     const res: IServActiveUserData = await api.user.getUserDataByToken()
 
-    // localStorage.token = undefined
-
     if (res.ok) {
-      console.log(res.data.user)
+      login({ ...res.data.user, isAuth: true })
     } else {
-      console.log(res.data.message)
+      /** если пользователь не авторизован */
+      localStorage.token = undefined
     }
+    changeDataStatus(status.successful)
   }
 
   return children
 }
-
-const mapState = (state) => ({
-  userData: state.auth.data,
-  userDataStatus: state.auth.isAuthStatus,
-})
 
 const mapDispatch = (d) => {
   const { login, changeDataStatus } = authActions
@@ -58,4 +50,4 @@ const mapDispatch = (d) => {
   return bindActionCreators(actions, d)
 }
 
-export default connect(mapState, mapDispatch)(DownloadMainData)
+export default connect(null, mapDispatch)(DownloadMainData)
