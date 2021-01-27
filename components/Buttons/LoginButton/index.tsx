@@ -2,9 +2,9 @@ import Link from "next/link"
 import { ReactElement } from "react"
 import { Button } from "antd"
 import { connect } from "react-redux"
-import authActions from "../../../../store/auth/actions"
+import authActions from "../../../store/auth/actions"
 import { bindActionCreators } from "redux"
-import { status } from "../../../../utils/status"
+import { status } from "../../../utils/status"
 
 interface Props {
   isAuth: boolean

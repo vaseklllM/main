@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from "react"
+import { ReactElement, useEffect, useState } from "react"
 import { bindActionCreators } from "redux"
 import authActions from "../../store/auth/actions"
 import { IActionLogin } from "../../store/auth/actions/login"
@@ -6,6 +6,7 @@ import { status } from "../../utils/status"
 import { connect } from "react-redux"
 import api from "../../api"
 import { IServActiveUserData } from "../../api/user/getActiveUserData"
+import { Typography } from "antd"
 
 interface Props {
   children: ReactElement
@@ -15,6 +16,9 @@ interface Props {
 
 function DownloadMainData(props: Props): ReactElement {
   const { children, changeDataStatus, login } = props
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  const { Title } = Typography
 
   useEffect(() => {
     downloadMainData()
@@ -22,6 +26,7 @@ function DownloadMainData(props: Props): ReactElement {
 
   async function downloadMainData() {
     await getUserInfo()
+    setIsLoaded(true)
   }
 
   async function getUserInfo() {
@@ -38,7 +43,9 @@ function DownloadMainData(props: Props): ReactElement {
     changeDataStatus(status.successful)
   }
 
-  return children
+  if (isLoaded) {
+    return children
+  } else return <Title level={4}>loading</Title>
 }
 
 const mapDispatch = (d) => {

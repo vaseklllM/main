@@ -3,20 +3,16 @@ import { PageHeader } from "antd"
 import classes from "./style.module.scss"
 import { LoginButton } from "../../Buttons"
 
-interface Props {
-  title?: string
-}
+interface Props {}
 
-function MainPageHeader(props: Props): ReactElement {
-  const { title } = props
-
+function SectionsHeader(props: Props): ReactElement {
   return (
     <PageHeader
       className={classes.header}
-      title={title}
+      title={"Курс доллар/євро"}
       extra={<LoginButton />}
     ></PageHeader>
   )
 }
 
-export default MainPageHeader
+export default SectionsHeader
