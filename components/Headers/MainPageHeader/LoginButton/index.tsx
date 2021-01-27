@@ -38,7 +38,7 @@ function LoginButton(props: Props): ReactElement {
     </Button>
   )
 
-  return <Link href='/login'>{btn}</Link>
+  return <Link href={`${isAuth ? "/" : "/login"}`}>{btn}</Link>
 }
 
 const mapState = (state) => ({
