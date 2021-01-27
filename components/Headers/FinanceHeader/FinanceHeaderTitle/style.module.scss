@@ -1,0 +1,25 @@
+.currencies {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  .currency_item {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+
+    &:not(:first-child) {
+      margin-left: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .currencies {
+    display: block;
+    .currency_item {
+      &:not(:first-child) {
+        margin-left: 0px;
+      }
+    }
+  }
+}

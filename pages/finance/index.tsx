@@ -10,9 +10,7 @@ interface Props {}
 export default function Finance({}: Props): ReactElement {
   const { Footer, Content } = Layout
 
-  const isAuth = useCheckAuth()
-
-  console.log(isAuth)
+  useCheckAuth()
 
   return (
     <Layout style={{ minHeight: "100vh" }}>

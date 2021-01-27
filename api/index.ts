@@ -1,6 +1,7 @@
 import login from "./user/login"
 import getUsers from "./user/getUsers"
 import getUserDataByToken from "./user/getActiveUserData"
+import getCurrencies from "./currencies/getCurrencies"
 
 const api = {
   user: {
@@ -10,6 +11,10 @@ const api = {
     getUsers,
     /** получить информацию о пользователе */
     getUserDataByToken,
+  },
+  currencies: {
+    /** курси валют */
+    getCurrencies,
   },
 }
 
