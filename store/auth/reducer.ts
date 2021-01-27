@@ -1,19 +1,8 @@
 import { status } from "../../utils/status"
+import { ISAuth } from "../interface/auth"
 import types from "./types"
 
-export interface IStoreAuthData {
-  isAuth: boolean
-  email?: string
-  nickname?: string
-  _id?: string
-}
-
-interface IStoreAuth {
-  data: IStoreAuthData
-  isAuthStatus: status
-}
-
-const auth: IStoreAuth = {
+const auth: ISAuth = {
   data: {
     isAuth: false,
     email: undefined,
@@ -23,7 +12,7 @@ const auth: IStoreAuth = {
   isAuthStatus: status.no_data,
 }
 
-export default (state = auth, action): IStoreAuth => {
+export default (state = auth, action): ISAuth => {
   const { payload } = action
 
   switch (action.type) {

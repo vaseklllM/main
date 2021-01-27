@@ -3,11 +3,16 @@ import React, { ReactElement } from "react"
 import Breadcrumbs from "../../components/Breadcrumbs"
 import FinanceHeader from "../../components/Headers/FinanceHeader"
 import SideMenu from "../../components/SideMenu"
+import { useCheckAuth } from "../../hooks"
 
 interface Props {}
 
 export default function Finance({}: Props): ReactElement {
   const { Footer, Content } = Layout
+
+  const isAuth = useCheckAuth()
+
+  console.log(isAuth)
 
   return (
     <Layout style={{ minHeight: "100vh" }}>

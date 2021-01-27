@@ -9,9 +9,9 @@ import { bindActionCreators } from "redux"
 import authActions from "../../store/auth/actions"
 import { connect } from "react-redux"
 import { IActionLogin } from "../../store/auth/actions/login"
-import { IStoreAuthData } from "../../store/auth/reducer"
 import { useRouter } from "next/router"
 import { status } from "../../utils/status"
+import { ISAuthData } from "../../store/interface/auth"
 
 const layout = {
   labelCol: { span: 8 },
@@ -23,7 +23,7 @@ const tailLayout = {
 
 interface IProps {
   login: (payload: IActionLogin) => {}
-  userData: IStoreAuthData
+  userData: ISAuthData
   userDataStatus: status
   changeDataStatus: (v: status) => {}
 }
