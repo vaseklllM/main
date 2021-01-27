@@ -1,12 +1,12 @@
-import React, { ReactElement } from "react"
 import { Layout } from "antd"
-import SectionsHeader from "../../Headers/SectionsHeader"
-import SideMenu from "../../SideMenu"
-import Breadcrumbs from "../../Breadcrumbs"
+import React, { ReactElement } from "react"
+import Breadcrumbs from "../../components/Breadcrumbs"
+import SectionsHeader from "../../components/Headers/SectionsHeader"
+import SideMenu from "../../components/SideMenu"
 
 interface Props {}
 
-export default function SectionsApp({}: Props): ReactElement {
+export default function Finance({}: Props): ReactElement {
   const { Footer, Content } = Layout
 
   return (

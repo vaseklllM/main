@@ -3,7 +3,7 @@ import { AppstoreOutlined } from "@ant-design/icons"
 import { Layout, Menu } from "antd"
 
 function SideMenu(props) {
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = useState(true)
 
   const { Sider } = Layout
 

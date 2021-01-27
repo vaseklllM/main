@@ -1,0 +1,48 @@
+.categories {
+  margin-top: 20px;
+
+  .cart_item {
+    width: 16.66667%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .categories {
+    .cart_item {
+      width: 20%;
+    }
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .categories {
+    .cart_item {
+      width: 25%;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .categories {
+    .cart_item {
+      width: 33.3334%;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .categories {
+    .cart_item {
+      width: 50%;
+    }
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .categories {
+    .cart_item {
+      width: 100%;
+    }
+  }
+}
