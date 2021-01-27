@@ -1,7 +1,6 @@
 import { ReactElement } from "react"
-import { PageHeader, Button } from "antd"
+import { PageHeader } from "antd"
 import classes from "./style.module.scss"
-import Link from "next/link"
 import LoginButton from "./LoginButton"
 
 interface Props {

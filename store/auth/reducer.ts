@@ -45,6 +45,12 @@ export default (state = auth, action): IStoreAuth => {
         isAuthStatus: payload,
       }
 
+    case types.LOGOUT:
+      return {
+        ...state,
+        data: auth.data,
+      }
+
     default:
       return state
   }
