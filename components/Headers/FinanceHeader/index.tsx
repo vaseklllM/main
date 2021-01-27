@@ -7,7 +7,7 @@ import { useRouter } from "next/router"
 
 interface Props {}
 
-function SectionsHeader(props: Props): ReactElement {
+function FinanceHeader(props: Props): ReactElement {
   const router = useRouter()
 
   return (
@@ -21,4 +21,4 @@ function SectionsHeader(props: Props): ReactElement {
   )
 }
 
-export default SectionsHeader
+export default FinanceHeader

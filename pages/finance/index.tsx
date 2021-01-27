@@ -1,7 +1,7 @@
 import { Layout } from "antd"
 import React, { ReactElement } from "react"
 import Breadcrumbs from "../../components/Breadcrumbs"
-import SectionsHeader from "../../components/Headers/SectionsHeader"
+import FinanceHeader from "../../components/Headers/FinanceHeader"
 import SideMenu from "../../components/SideMenu"
 
 interface Props {}
@@ -13,7 +13,7 @@ export default function Finance({}: Props): ReactElement {
     <Layout style={{ minHeight: "100vh" }}>
       <SideMenu />
       <Layout className='site-layout'>
-        <SectionsHeader />
+        <FinanceHeader />
         <Content style={{ margin: "0 16px" }}>
           <Breadcrumbs />
           <div style={{ padding: 24, minHeight: 360, backgroundColor: "white" }}>
