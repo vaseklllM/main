@@ -1,4 +1,4 @@
-import LoginPageHeader from "./LoginPageHeader"
+import EmptyHeader from "./EmptyHeader"
 import MainPageHeader from './MainPageHeader'
 
-export { LoginPageHeader, MainPageHeader }
+export { EmptyHeader, MainPageHeader }

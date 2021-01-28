@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { Col, Form, Input, Button, Checkbox, message } from "antd"
 import classes from "./style.module.scss"
 import Body from "../../components/Body"
-import { LoginPageHeader } from "../../components/Headers"
+import { EmptyHeader } from "../../components/Headers"
 import api from "../../api"
 import { IServLogin } from "../../api/user/login"
 import { bindActionCreators } from "redux"
@@ -74,7 +74,7 @@ function Login(props: IProps) {
 
   return (
     <>
-      <LoginPageHeader />
+      <EmptyHeader />
       <Body>
         <div className={classes.body}>
           <Col sm={20} md={18} lg={15} xl={12} xxl={8}>
