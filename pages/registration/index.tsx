@@ -1,8 +1,18 @@
 import React from "react"
-import { Form, Input, Tooltip, Checkbox, Button, Row, Layout, Col } from "antd"
+import { Form, Input, Tooltip, Checkbox, Button, Layout, Col } from "antd"
 import { QuestionCircleOutlined } from "@ant-design/icons"
 import classes from "./style.module.scss"
 import { EmptyHeader } from "../../components/Headers"
+import api from "../../api"
+import { message } from "antd"
+import { connect } from "react-redux"
+import authActions from "../../store/auth/actions"
+import { IActionLogin } from "../../store/auth/actions/login"
+import { bindActionCreators } from "redux"
+import IStore from "../../store/interface"
+import { ISAuth } from "../../store/interface/auth"
+import { status } from "../../utils/status"
+import { useRouter } from "next/router"
 
 const formItemLayout = {
   labelCol: {
@@ -35,11 +45,38 @@ const tailFormItemLayout = {
   },
 }
 
-export default function RegistrationForm() {
-  const [form] = Form.useForm()
+interface IProps {
+  login: (payload: IActionLogin) => any
+  auth: ISAuth
+  changeDataStatus: (payload: status) => any
+}
 
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values)
+function RegistrationForm(props: IProps) {
+  const { login, auth, changeDataStatus } = props
+  const [form] = Form.useForm()
+  const router = useRouter()
+
+  if (auth.isAuthStatus === status.successful && auth.data.isAuth) {
+    router.push("/")
+  }
+
+  const key = "registration"
+
+  async function onFinish(values) {
+    message.loading({ content: "Реєстрація...", key })
+
+    const { email, nickname, password } = values
+
+    const res = await api.user.registration({ email, nickname, password })
+
+    if (res.ok) {
+      message.success({ content: res.data.message, key })
+      localStorage.token = res.data.token
+      login({ isAuth: true, _id: res.data.userId, email, nickname })
+      changeDataStatus(status.successful)
+    } else {
+      message.error({ content: res.data.message, key })
+    }
   }
 
   return (
@@ -160,3 +197,15 @@ export default function RegistrationForm() {
     </>
   )
 }
+
+const mapState = (store: IStore) => ({
+  auth: store.auth,
+})
+
+const mapDispatch = (d) => {
+  const { login, changeDataStatus } = authActions
+  const actions = { login, changeDataStatus }
+  return bindActionCreators(actions, d)
+}
+
+export default connect(mapState, mapDispatch)(RegistrationForm)
