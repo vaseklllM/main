@@ -28,17 +28,24 @@ function LoginButton(props: Props): ReactElement {
     else return isAuth ? "Вихід" : "Вхід"
   }
 
-  const btn = (
-    <Button
-      type='primary'
-      onClick={clickLogout}
-      loading={isAuthStatus === status.loading}
-    >
-      {getBtnText()}
-    </Button>
+  return (
+    <>
+      <Link href={`${isAuth ? "/" : "/login"}`}>
+        <Button
+          type='primary'
+          onClick={clickLogout}
+          loading={isAuthStatus === status.loading}
+        >
+          {getBtnText()}
+        </Button>
+      </Link>
+      {!isAuth && (
+        <Link href='/registration'>
+          <Button type='primary'>Реєстрація</Button>
+        </Link>
+      )}
+    </>
   )
-
-  return <Link href={`${isAuth ? "/" : "/login"}`}>{btn}</Link>
 }
 
 const mapState = (state) => ({

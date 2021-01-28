@@ -38,7 +38,7 @@ function Users(props: Props): ReactElement {
               style={{ maxWidth: 180 }}
               cover={<img alt='example' src='/user_icon.png' />}
             >
-              <Meta title={el.email} />
+              <Meta title={el.nickname} />
             </Card>
           </Col>
         ))}
