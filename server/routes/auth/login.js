@@ -2,8 +2,7 @@ const { Router } = require("express")
 const router = Router()
 
 const bcrypt = require("bcryptjs")
-const jwt = require("jsonwebtoken")
-const { PASSPORT_SECRET_KEY } = require("../../../utils/config")
+const getToken = require("../../funcs/getToken")
 
 const User = require("../../models/User")
 
@@ -31,17 +30,15 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, candidate.password)
     if (isMatch) {
       const token = getToken(candidate)
-      res
-        .status(201)
-        .json({
-          message: "Успішна авторизація",
-          token,
-          user: {
-            nickname: candidate.nickname,
-            _id: candidate._id,
-            email: candidate.email,
-          },
-        })
+      res.status(201).json({
+        message: "Успішна авторизація",
+        token,
+        user: {
+          nickname: candidate.nickname,
+          _id: candidate._id,
+          email: candidate.email,
+        },
+      })
     } else {
       res.status(401).json({ message: "Невірний логін або пароль" })
     }
@@ -49,11 +46,5 @@ router.post("/login", async (req, res) => {
     res.status(401).json({ message: `Користувач ${email} не зареєстрований` })
   }
 })
-
-function getToken(candidate) {
-  const payload = { id: candidate._id, email: candidate.email }
-  const options = { expiresIn: 86400 }
-  return "Bearer " + jwt.sign(payload, PASSPORT_SECRET_KEY, options)
-}
 
 module.exports = router

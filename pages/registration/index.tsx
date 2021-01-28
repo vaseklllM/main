@@ -53,10 +53,6 @@ export default function RegistrationForm() {
               form={form}
               name='register'
               onFinish={onFinish}
-              // initialValues={{
-              //   residence: ["zhejiang", "hangzhou", "xihu"],
-              //   prefix: "86",
-              // }}
               scrollToFirstError
             >
               <Form.Item
@@ -65,11 +61,32 @@ export default function RegistrationForm() {
                 rules={[
                   {
                     type: "email",
-                    message: "Введен неверный E-mail!",
+                    message: "Введено невірний E-mail!",
                   },
                   {
                     required: true,
-                    message: "Пожалуйста, введите свой E-mail!",
+                    message: "Будь ласка, введіть свій E-mail!",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+
+              <Form.Item
+                name='nickname'
+                label={
+                  <span>
+                    Нікнейм&nbsp;
+                    <Tooltip title='Як ви хочете, щоб вас називали?'>
+                      <QuestionCircleOutlined />
+                    </Tooltip>
+                  </span>
+                }
+                rules={[
+                  {
+                    required: true,
+                    message: "Будь ласка, введіть свій нікнейм!",
+                    whitespace: true,
                   },
                 ]}
               >
@@ -82,7 +99,7 @@ export default function RegistrationForm() {
                 rules={[
                   {
                     required: true,
-                    message: "Пожалуйста, введите свой пароль!",
+                    message: "Будь ласка, введіть свій пароль!",
                   },
                 ]}
                 hasFeedback
@@ -92,13 +109,13 @@ export default function RegistrationForm() {
 
               <Form.Item
                 name='confirm'
-                label='Подтвердите Пароль'
+                label='Підтвердіть пароль'
                 dependencies={["password"]}
                 hasFeedback
                 rules={[
                   {
                     required: true,
-                    message: "Пожалуйста, подтвердите свой пароль!",
+                    message: "Будь ласка, підтвердіть свій пароль!",
                   },
                   ({ getFieldValue }) => ({
                     validator(_, value) {
@@ -106,33 +123,12 @@ export default function RegistrationForm() {
                         return Promise.resolve()
                       }
 
-                      return Promise.reject("Два введенных вами пароля не совпадают!")
+                      return Promise.reject("Введені вами паролі не збігаються!")
                     },
                   }),
                 ]}
               >
                 <Input.Password />
-              </Form.Item>
-
-              <Form.Item
-                name='nickname'
-                label={
-                  <span>
-                    Никнейм&nbsp;
-                    <Tooltip title='Как вы хотите, чтобы вас называли?'>
-                      <QuestionCircleOutlined />
-                    </Tooltip>
-                  </span>
-                }
-                rules={[
-                  {
-                    required: true,
-                    message: "Пожалуйста, введите свой никнейм!",
-                    whitespace: true,
-                  },
-                ]}
-              >
-                <Input />
               </Form.Item>
 
               <Form.Item
@@ -154,7 +150,7 @@ export default function RegistrationForm() {
               </Form.Item>
               <Form.Item {...tailFormItemLayout}>
                 <Button type='primary' htmlType='submit'>
-                  Register
+                  Зареєструватися
                 </Button>
               </Form.Item>
             </Form>
