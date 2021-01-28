@@ -9,5 +9,9 @@ export interface IServUsers extends IfetchDataParams {
 export default async function getUsers(): Promise<IServUsers> {
   const res = await fetchData("api/auth/getUsers")
 
-  return res.data
+  if (res.ok) {
+    return { data: res.data.data, ok: true }
+  } else {
+    return { data: [], ok: false }
+  }
 }
