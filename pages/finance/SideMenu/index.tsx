@@ -1,47 +1,26 @@
 import React, { useState } from "react"
-import { DollarCircleOutlined, BarChartOutlined } from "@ant-design/icons"
 import { Layout, Menu } from "antd"
-import { BitcoinIcon, BriefcaseIcon } from "../../../components/Icons"
-import classes from "./style.module.scss"
+import financeMenuList from "../financeMenuList"
+import { useRouter } from "next/router"
 
-function SideMenu(props) {
+function SideMenu() {
   const [collapsed, setCollapsed] = useState(true)
-
+  const router = useRouter()
   const { Sider } = Layout
+  const { toggle } = router.query
 
-  const menuList = [
-    {
-      id: "briefcase",
-      name: "Портфель",
-      icon: <BriefcaseIcon className={classes.briefcase} />,
-    },
-    {
-      id: "currencies",
-      name: "Валюти",
-      icon: <DollarCircleOutlined />,
-    },
-    {
-      id: "share",
-      name: "Акції",
-      icon: <BarChartOutlined />,
-    },
-    {
-      id: "cryptocurrency",
-      name: "Криптовалюта",
-      icon: <BitcoinIcon className={classes.btc} />,
-    },
-  ]
+  const activeTogle = typeof toggle === "string" ? toggle : financeMenuList[0].id
 
   return (
     <Sider theme='light' collapsible collapsed={collapsed} onCollapse={setCollapsed}>
       <div className='logo' />
       <Menu
         theme='light'
-        defaultSelectedKeys={[menuList[0].id]}
+        defaultSelectedKeys={[activeTogle]}
         mode='inline'
-        onClick={(e) => console.log(e)}
+        onClick={(e) => router.push(`/finance/${e.key}`)}
       >
-        {menuList.map((el) => (
+        {financeMenuList.map((el) => (
           <Menu.Item key={el.id} icon={el.icon}>
             {el.name}
           </Menu.Item>
