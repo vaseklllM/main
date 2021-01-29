@@ -2,7 +2,7 @@ import { Layout } from "antd"
 import React, { ReactElement } from "react"
 import Breadcrumbs from "../../components/Breadcrumbs"
 import FinanceHeader from "../../components/Headers/FinanceHeader"
-import SideMenu from "../../components/SideMenu"
+import SideMenu from "./SideMenu"
 import { useCheckAuth } from "../../hooks"
 
 interface Props {}
