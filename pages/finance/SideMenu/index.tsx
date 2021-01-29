@@ -4,7 +4,7 @@ import financeMenuList from "../financeMenuList"
 import { useRouter } from "next/router"
 
 function SideMenu() {
-  const [collapsed, setCollapsed] = useState(true)
+  const [collapsed, setCollapsed] = useState(false)
   const router = useRouter()
   const { Sider } = Layout
   const { toggle } = router.query

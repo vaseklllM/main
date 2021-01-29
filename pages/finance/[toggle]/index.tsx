@@ -12,6 +12,7 @@ export default function toggle({}: Props): ReactElement {
 
   if (financeMenuList.findIndex((i) => i.id === toggle) === -1) {
     router.push(`/finance/${financeMenuList[0].id}`)
+    return null
   }
 
   return (
