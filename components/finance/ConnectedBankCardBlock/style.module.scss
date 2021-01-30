@@ -1,0 +1,12 @@
+.bank_cards {
+  margin-top: 10px;
+  // display: grid;
+
+  .bank_card {
+    margin-top: 10px;
+
+    // &:not(:first-child) {
+    //   margin-left: 10px;
+    // }
+  }
+}

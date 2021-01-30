@@ -2,6 +2,7 @@ import { BitcoinIcon, BriefcaseIcon } from "../../../components/Icons"
 import { DollarCircleOutlined, BarChartOutlined } from "@ant-design/icons"
 import classes from "./menuList.module.scss"
 import Briefcase from "./Briefcase"
+import Сurrencies from "./Сurrencies"
 
 const financeMenuList = [
   {
@@ -14,7 +15,7 @@ const financeMenuList = [
     id: "currencies",
     name: "Валюти",
     icon: <DollarCircleOutlined />,
-    page: "Валюти",
+    page: <Сurrencies />,
   },
   {
     id: "share",
