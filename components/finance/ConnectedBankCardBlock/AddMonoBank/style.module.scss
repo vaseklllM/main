@@ -2,7 +2,16 @@
   margin-top: 20px;
 }
 
-.token_input {
+.token_input_row {
+  display: flex;
+  align-items: center;
   margin-top: 20px;
-  max-width: 400px;
+
+  .token_input {
+    max-width: 400px;
+  }
+
+  .token_status_icon {
+    margin-left: 15px;
+  }
 }
