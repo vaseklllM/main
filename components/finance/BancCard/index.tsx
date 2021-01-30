@@ -3,17 +3,20 @@ import { Col, Button, Tooltip, Typography } from "antd"
 import classes from "./style.module.scss"
 import { txt } from "../../../utils"
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
+import IStore from "../../../store/interface"
+import { connect } from "react-redux"
 
 interface Props {
   title?: string
   className?: string
   children?: ReactElement | ReactElement[]
+  windowWidth: number
 }
 
 const ANIMATION_TIME = 700
 
-export default function BancCard(props: Props): ReactElement {
-  const { title = "card title", className, children } = props
+function BancCard(props: Props): ReactElement {
+  const { title = "card title", className, children, windowWidth } = props
   const { Title } = Typography
   const [isAdd, setIsAdd] = useState(false)
   const [isShowBody, setIsShowBody] = useState(false)
@@ -24,16 +27,18 @@ export default function BancCard(props: Props): ReactElement {
   const mainRef = useRef(null)
 
   useEffect(() => {
-    if (bodyRef.current && isAdd) {
-      setBodyWidth(mainRef.current.offsetWidth)
-      setTimeout(() => {
-        setBodyHeight(bodyRef.current.offsetHeight)
-      }, ANIMATION_TIME / 2)
-    } else {
-      setBodyWidth(0)
-      setBodyHeight(0)
+    if (windowWidth !== 0) {
+      if (bodyRef.current && isAdd) {
+        setBodyWidth(mainRef.current.offsetWidth)
+        setTimeout(() => {
+          setBodyHeight(bodyRef.current.offsetHeight)
+        }, ANIMATION_TIME / 2)
+      } else {
+        setBodyWidth(0)
+        setBodyHeight(0)
+      }
     }
-  }, [isShowBody, isAdd])
+  }, [isShowBody, isAdd, windowWidth])
 
   function changeIsAdd() {
     if (isAdd) {
@@ -84,3 +89,7 @@ export default function BancCard(props: Props): ReactElement {
     </div>
   )
 }
+
+const mapState = ({ global }: IStore) => ({ windowWidth: global.width })
+
+export default connect(mapState)(BancCard)
