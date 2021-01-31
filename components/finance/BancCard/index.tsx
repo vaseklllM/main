@@ -5,6 +5,7 @@ import { txt } from "../../../utils"
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
 import IStore from "../../../store/interface"
 import { connect } from "react-redux"
+import useResize from "../../../hocs/useResize"
 
 interface Props {
   title?: string
@@ -25,6 +26,10 @@ function BancCard(props: Props): ReactElement {
 
   const bodyRef = useRef(null)
   const mainRef = useRef(null)
+
+  // const [bodyW, bodyH] = useResize(bodyRef)
+
+  // console.log(bodyH)
 
   useEffect(() => {
     if (windowWidth !== 0) {

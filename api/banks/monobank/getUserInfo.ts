@@ -16,14 +16,16 @@ interface bankCard {
   currency: string
 }
 
-export interface IServMonoGetUserInfo extends IfetchDataParams {
-  data?: {
-    user: {
-      id: string
-      name: string
-    }
-    bankCards: bankCard[]
+export interface IMonobankUserData {
+  user: {
+    id: string
+    name: string
   }
+  bankCards: bankCard[]
+}
+
+interface IServMonoGetUserInfo extends IfetchDataParams {
+  data?: IMonobankUserData
 }
 
 // поучение списка пользователей

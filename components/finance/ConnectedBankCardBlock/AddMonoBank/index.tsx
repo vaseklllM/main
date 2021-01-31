@@ -7,6 +7,7 @@ import Link from "next/link"
 import { status } from "../../../../utils/status"
 import InputActiveIcon from "./InputActiveIcon"
 import api from "../../../../api"
+import { IMonobankUserData } from "../../../../api/banks/monobank/getUserInfo"
 
 interface Props {
   className?: string
@@ -15,8 +16,9 @@ interface Props {
 export default function AddMonoBank(props: Props): ReactElement {
   const { className } = props
   const { Text } = Typography
-  const [token, setToken] = useState("")
-  const [isActiveToken, setIsActiveToken] = useState(status.no_data)
+  const [token, setToken] = useState<string>("")
+  const [isActiveToken, setIsActiveToken] = useState<status>(status.no_data)
+  const [cardData, setCardData] = useState<IMonobankUserData | null>(null)
 
   const goMonoBtnText = "Получити токен"
   const inputPlaceholder = "Токен"
@@ -29,13 +31,17 @@ export default function AddMonoBank(props: Props): ReactElement {
 
       const res = await api.banks.monobank.getUserInfo(value)
       if (res.ok) {
-        console.log(res.data)
+        setCardData(res.data)
         setIsActiveToken(status.successful)
       } else {
         setIsActiveToken(status.error)
+        setCardData(null)
       }
     } else if (isActiveToken !== status.no_data) {
       setIsActiveToken(status.no_data)
+      setCardData(null)
+    } else {
+      setCardData(null)
     }
   }
 
@@ -68,6 +74,14 @@ export default function AddMonoBank(props: Props): ReactElement {
           isActiveToken={token !== "" && isActiveToken}
         />
       </Row>
+      {cardData && (
+        <div className={classes.card_data}>
+          <Row>
+            <Text strong>Користувач:</Text>
+            <Text>{cardData.user.name}</Text>
+          </Row>
+        </div>
+      )}
     </BancCard>
   )
 }
