@@ -6,6 +6,7 @@ import classes from "./style.module.scss"
 import Link from "next/link"
 import { status } from "../../../../utils/status"
 import InputActiveIcon from "./InputActiveIcon"
+import api from "../../../../api"
 
 interface Props {
   className?: string
@@ -26,9 +27,13 @@ export default function AddMonoBank(props: Props): ReactElement {
     if (value.length === 44) {
       setIsActiveToken(status.loading)
 
-      setTimeout(() => {
+      const res = await api.banks.monobank.getUserInfo(value)
+      if (res.ok) {
+        console.log(res.data)
         setIsActiveToken(status.successful)
-      }, 1000)
+      } else {
+        setIsActiveToken(status.error)
+      }
     } else if (isActiveToken !== status.no_data) {
       setIsActiveToken(status.no_data)
     }
