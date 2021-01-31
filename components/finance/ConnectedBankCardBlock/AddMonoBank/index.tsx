@@ -78,7 +78,7 @@ export default function AddMonoBank(props: Props): ReactElement {
         <div className={classes.card_data}>
           <Row>
             <Text strong>Користувач:</Text>
-            <Text>{cardData.user.name}</Text>
+            <Text className={classes.user_name}>{cardData.user.name}</Text>
           </Row>
         </div>
       )}

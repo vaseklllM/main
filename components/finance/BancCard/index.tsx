@@ -27,10 +27,6 @@ function BancCard(props: Props): ReactElement {
   const bodyRef = useRef(null)
   const mainRef = useRef(null)
 
-  // const [bodyW, bodyH] = useResize(bodyRef)
-
-  // console.log(bodyH)
-
   useEffect(() => {
     if (windowWidth !== 0) {
       if (bodyRef.current && isAdd) {
@@ -43,7 +39,7 @@ function BancCard(props: Props): ReactElement {
         setBodyHeight(0)
       }
     }
-  }, [isShowBody, isAdd, windowWidth])
+  }, [isShowBody, isAdd, windowWidth, children])
 
   function changeIsAdd() {
     if (isAdd) {
