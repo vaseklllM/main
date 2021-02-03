@@ -10,6 +10,8 @@ import classes from "./style.module.scss"
 
 interface Props {}
 
+const showCurrenciesKeys = ["USD", "RUB", "EUR"]
+
 export default function FinanceHeaderTitle({}: Props): ReactElement {
   const { Title } = Typography
 
@@ -22,11 +24,13 @@ export default function FinanceHeaderTitle({}: Props): ReactElement {
   } else if (currencies.dataStatus === status.successful) {
     return (
       <div className={classes.currencies}>
-        {currencies.data.map((el) => (
-          <Title key={el.id} level={4} className={classes.currency_item}>{`${
-            el.symbol
-          }${parseFloat(el.value.toFixed(2))}`}</Title>
-        ))}
+        {currencies.data
+          .filter((i) => showCurrenciesKeys.indexOf(i.key) !== -1)
+          .map((el) => (
+            <Title key={el.id} level={4} className={classes.currency_item}>{`${
+              el.symbol
+            }${parseFloat(el.value.toFixed(2))}`}</Title>
+          ))}
       </div>
     )
   } else return <div>error</div>
