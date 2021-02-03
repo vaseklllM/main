@@ -46,7 +46,9 @@ export default function AddMonoBank(props: Props): ReactElement {
     }
   }
 
-  // console.log()
+  function onSaveCards() {
+    console.log("save")
+  }
 
   return (
     <BancCard className={txt.join([className])} title='Монобанк'>
@@ -90,6 +92,11 @@ export default function AddMonoBank(props: Props): ReactElement {
             {cardData.bankCards.map((el) => (
               <BankCardGray key={el.id} className={classes.card_item} data={el} />
             ))}
+          </Row>
+          <Row>
+            <Button type='primary' onClick={onSaveCards}>
+              Зберегти
+            </Button>
           </Row>
         </div>
       )}

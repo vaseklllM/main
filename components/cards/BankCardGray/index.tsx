@@ -23,7 +23,6 @@ export default function BankCardGray(props: Props): ReactElement {
       </div>
       <div className={classes.holder}>
         <CardNumber number={data.cardNumber} iban={data.iban} isFop={data.isFop} />
-        {/* <span className={classes.number}>1234 - 5678 - 9012 - 3456</span> */}
       </div>
     </div>
   )
