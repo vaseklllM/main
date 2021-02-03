@@ -2,6 +2,14 @@ import api from "../../../../api"
 import { status } from "../../../../utils/status"
 import types from "../types"
 
+const uah = {
+  id: 0,
+  name: "Гривня",
+  symbol: "₴",
+  value: 1,
+  key: "UAH",
+}
+
 /** загрузка курсов валют */
 const getCourses = () => async (dispatch) => {
   function disp(payload) {
@@ -23,7 +31,7 @@ const getCourses = () => async (dispatch) => {
 }
 
 function convertData(res, keys) {
-  let data = []
+  let data = [uah]
 
   res.forEach((el) => {
     if (keys.indexOf(el.key) !== -1) {

@@ -7,7 +7,7 @@ const ISOCurrncyCodes = {
   "978": "EUR",
 }
 
-interface bankCard {
+export interface IBankCard {
   id: string
   balance: number
   cardNumber?: string
@@ -21,7 +21,7 @@ export interface IMonobankUserData {
     id: string
     name: string
   }
-  bankCards: bankCard[]
+  bankCards: IBankCard[]
 }
 
 interface IServMonoGetUserInfo extends IfetchDataParams {
@@ -61,12 +61,12 @@ export default async function getUserInfo(token: string): Promise<IServMonoGetUs
   }
 }
 
-function convertBackCard(cards): bankCard[] {
-  const res: bankCard[] = []
+function convertBackCard(cards): IBankCard[] {
+  const res: IBankCard[] = []
 
   cards.forEach((el) => {
     if (el) {
-      let newCard: bankCard = {
+      let newCard: IBankCard = {
         id: el.id,
         balance: el.balance,
         iban: el.iban,

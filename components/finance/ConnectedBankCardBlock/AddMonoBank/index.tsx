@@ -8,6 +8,7 @@ import { status } from "../../../../utils/status"
 import InputActiveIcon from "./InputActiveIcon"
 import api from "../../../../api"
 import { IMonobankUserData } from "../../../../api/banks/monobank/getUserInfo"
+import { BankCardGray } from "../../../cards"
 
 interface Props {
   className?: string
@@ -45,6 +46,8 @@ export default function AddMonoBank(props: Props): ReactElement {
     }
   }
 
+  // console.log()
+
   return (
     <BancCard className={txt.join([className])} title='Монобанк'>
       <Row>
@@ -79,6 +82,14 @@ export default function AddMonoBank(props: Props): ReactElement {
           <Row>
             <Text strong>Користувач:</Text>
             <Text className={classes.user_name}>{cardData.user.name}</Text>
+          </Row>
+          <Row className={classes.cards_title}>
+            <Text strong>Рахунки:</Text>
+          </Row>
+          <Row className={classes.cards_row}>
+            {cardData.bankCards.map((el) => (
+              <BankCardGray key={el.id} className={classes.card_item} data={el} />
+            ))}
           </Row>
         </div>
       )}
