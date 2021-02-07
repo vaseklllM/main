@@ -10,11 +10,12 @@ import useGetData from "../../hooks/useGetData"
 import FinanceContentBlock from "../FinanceContentBlock"
 import { LoadingOutlined } from "@ant-design/icons"
 import classes from "./style.module.scss"
+import ISDataStatus from "../../../store/interface/dataStatus"
 
 interface Props {
-  dataStatus: status
+  dataStatus: ISDataStatus
   getData: () => any
-  changeDataStatus: (value: status) => any
+  changeDataStatus: (value: ISDataStatus) => any
   data: IServAllBankCardsData
 }
 
@@ -24,15 +25,14 @@ function ListOfBankCardsBlock(props: Props): ReactElement {
 
   useGetData({ changeDataStatus, dataStatus, getData })
 
-  // console.log(localStorage)
-
-  // console.log(dataStatus === status.loading)
+  const isShowLoader =
+    dataStatus.firstLoad === status.loading || dataStatus.renewal === status.loading
 
   return (
     <FinanceContentBlock>
       <Title level={5}>
         Список банківських карт
-        {dataStatus === status.loading && <LoadingOutlined className={classes.loader} />}
+        {isShowLoader && <LoadingOutlined className={classes.loader} />}
       </Title>
     </FinanceContentBlock>
   )

@@ -15,11 +15,17 @@ const getData = () => async (dispatch) => {
   if (res.ok) {
     disp({
       data: res.data,
-      dataStatus: status.successful,
+      dataStatus: {
+        firstLoad: status.successful,
+        renewal: status.successful,
+      },
     })
   } else {
     disp({
-      dataStatus: status.error,
+      dataStatus: {
+        firstLoad: status.error,
+        renewal: status.error,
+      },
     })
   }
 }

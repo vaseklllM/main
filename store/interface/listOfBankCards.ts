@@ -1,4 +1,5 @@
-import { status } from "../../utils/status"
+
+import ISDataStatus from "./dataStatus";
 
 interface ISFinanceListOfBankCardsData {
 
@@ -6,5 +7,5 @@ interface ISFinanceListOfBankCardsData {
 
 export default interface ISFinanceListOfBankCards {
   data: ISFinanceListOfBankCardsData
-  dataStatus: status
+  dataStatus: ISDataStatus
 }

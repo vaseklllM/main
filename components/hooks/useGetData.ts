@@ -1,10 +1,11 @@
 import { useEffect } from "react"
+import ISDataStatus from "../../store/interface/dataStatus"
 import { status } from "../../utils/status"
 
 interface IUseGetData {
   getData: () => any
-  changeDataStatus: (value: status) => any
-  dataStatus: status
+  changeDataStatus: (value: ISDataStatus) => any
+  dataStatus: ISDataStatus
 }
 
 export default function useGetData(params: IUseGetData) {
@@ -15,10 +16,14 @@ export default function useGetData(params: IUseGetData) {
   }, [])
 
   function fetchData() {
-    if (dataStatus === status.no_data) {
-      changeDataStatus(status.loading)
+    if (dataStatus.firstLoad === status.no_data) {
+      changeDataStatus({ firstLoad: status.loading, renewal: status.loading })
       getData()
-    } else if (dataStatus === status.successful) {
+    } else if (
+      dataStatus.renewal === status.successful &&
+      dataStatus.firstLoad === status.successful
+    ) {
+      changeDataStatus({ firstLoad: status.successful, renewal: status.loading })
       getData()
     }
   }

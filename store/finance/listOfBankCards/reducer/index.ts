@@ -4,7 +4,10 @@ import types from "../types"
 
 const financeListOfBankCards: ISFinanceListOfBankCards = {
   data: [],
-  dataStatus: status.no_data,
+  dataStatus: {
+    firstLoad: status.no_data,
+    renewal: status.no_data,
+  },
 }
 
 export default (state = financeListOfBankCards, action): ISFinanceListOfBankCards => {
