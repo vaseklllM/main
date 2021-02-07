@@ -12,6 +12,9 @@ const schema = new Schema({
             type: Boolean,
             default: true,
           },
+          user: {
+            name: { type: String, required: true },
+          },
         },
       ],
       privatbank: [

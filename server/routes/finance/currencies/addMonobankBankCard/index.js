@@ -15,7 +15,11 @@ router.post("/addMonobankBankCard", checkAuth, async (req, res) => {
     return undefined
   }
 
-  const isAdd = await addMonobankToken(req.user._financeId, token)
+  const isAdd = await addMonobankToken({
+    financeId: req.user._financeId,
+    token,
+    userName: bankUserInfo.data.user.name,
+  })
 
   if (isAdd) {
     res.status(201).json({ message: "Токен успішно добавлено" })
