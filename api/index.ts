@@ -5,6 +5,7 @@ import getCurrencies from "./currencies/getCurrencies"
 import registration from "./user/registration"
 import getUserInfo from "./banks/monobank/getUserInfo"
 import addMonobankToken from "./banks/monobank/addMonobankToken"
+import getAllCards from "./banks/getAllCards"
 
 const api = {
   user: {
@@ -24,6 +25,8 @@ const api = {
   /** блок фінансів */
   finance: {
     banks: {
+      /** Повертає список банківських карт */
+      getAllCards,
       monobank: {
         getUserInfo,
         /** добавлення токена від монобанку */
