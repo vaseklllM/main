@@ -1,18 +1,19 @@
 const bcrypt = require("bcryptjs")
 const User = require("../models/User")
-
-const email = "admin"
-const nickname = "vasek"
-const password = "admin"
+const servConfig = require("../config")
 
 /**
  * Создание акканута администратора
  */
 async function createAdminAccount() {
-  const candidate = await User.findOne({ email })
+  const candidate = await User.findOne({ email: servConfig.adminAccount.email })
   if (candidate) return undefined
-  const hashedPassword = await bcrypt.hash(password, 12)
-  const user = new User({ email, password: hashedPassword, nickname })
+  const hashedPassword = await bcrypt.hash(servConfig.adminAccount.password, 12)
+  const user = new User({
+    email: servConfig.adminAccount.email,
+    password: hashedPassword,
+    nickname: servConfig.adminAccount.nickname,
+  })
   user.save()
 }
 

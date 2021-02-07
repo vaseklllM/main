@@ -1,5 +1,6 @@
 function createDefaultData() {
-  require('./createAdminAccount')()
+  require("./createAdminAccount")()
+  require("./createFinance")()
 }
 
 module.exports = createDefaultData
