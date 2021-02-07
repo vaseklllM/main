@@ -17,7 +17,7 @@ interface Props {
   changeHeight: (payload: number) => any
 }
 
-function DownloadMainData(props: Props): ReactElement {
+const DownloadMainData = (props: Props): ReactElement => {
   const { children, changeDataStatus, login, changeHeight, changeWidth } = props
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -33,7 +33,7 @@ function DownloadMainData(props: Props): ReactElement {
     setIsLoaded(true)
   }
 
-  async function getUserInfo() {
+  const getUserInfo = async () => {
     changeDataStatus(status.loading)
 
     const res: IServActiveUserData = await api.user.getUserDataByToken()
@@ -42,7 +42,7 @@ function DownloadMainData(props: Props): ReactElement {
       login({ ...res.data.user, isAuth: true })
     } else {
       /** если пользователь не авторизован */
-      localStorage.token = undefined
+      localStorage.removeItem("token")
     }
     changeDataStatus(status.successful)
   }

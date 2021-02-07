@@ -16,10 +16,10 @@ function LoginButton(props: Props): ReactElement {
   const { isAuth, logout, isAuthStatus } = props
 
   /** выход из акаунта */
-  function clickLogout() {
+  const clickLogout = () => {
     if (isAuth) {
       logout()
-      localStorage.token = undefined
+      localStorage.removeItem("token")
     }
   }
 

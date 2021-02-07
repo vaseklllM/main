@@ -21,8 +21,5 @@ export default async function login(
     method: "POST",
   })
 
-  // установка токена в localStorage
-  // if (res.ok) localStorage.token = res.data.token
-
   return res
 }

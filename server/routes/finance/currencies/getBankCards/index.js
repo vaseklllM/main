@@ -5,7 +5,7 @@ const Finance = require("../../../../models/finance")
 
 router.get("/getBankCards", checkAuth, async (req, res) => {
   const finance = await Finance.findById(req.user._financeId)
-  res.status(200).json({ data: convertBanksData(finance.currencies.bankCards) })
+  res.status(200).json(convertBanksData(finance.currencies.bankCards))
 })
 
 function convertBanksData(bankCards) {

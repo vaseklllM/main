@@ -33,7 +33,7 @@ interface loginValues {
   remember: boolean
 }
 
-function Login(props: IProps) {
+const Login = (props: IProps) => {
   const { login, userData, userDataStatus, changeDataStatus } = props
   const router = useRouter()
 
@@ -43,7 +43,7 @@ function Login(props: IProps) {
     }
   }, [userData, userDataStatus])
 
-  async function onFinish(values: loginValues) {
+  const onFinish = async (values: loginValues) => {
     changeDataStatus(status.loading)
     const { email, password, remember } = values
 
@@ -55,12 +55,12 @@ function Login(props: IProps) {
     if (res.ok) {
       message.success({ content: res.data.message, key, duration: 2 })
 
-      localStorage.token = res.data.token
+      localStorage.setItem("token", res.data.token)
 
       /** удаление токена при выходе или перезагрузке страницы */
       if (!remember) {
         window.onbeforeunload = function () {
-          localStorage.token = undefined
+          localStorage.removeItem("token")
         }
       }
 

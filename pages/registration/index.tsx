@@ -51,7 +51,7 @@ interface IProps {
   changeDataStatus: (payload: status) => any
 }
 
-function RegistrationForm(props: IProps) {
+const RegistrationForm = (props: IProps) => {
   const { login, auth, changeDataStatus } = props
   const [form] = Form.useForm()
   const router = useRouter()
@@ -62,7 +62,7 @@ function RegistrationForm(props: IProps) {
 
   const key = "registration"
 
-  async function onFinish(values) {
+  const onFinish = async (values) => {
     message.loading({ content: "Реєстрація...", key })
 
     const { email, nickname, password } = values
@@ -71,7 +71,7 @@ function RegistrationForm(props: IProps) {
 
     if (res.ok) {
       message.success({ content: res.data.message, key })
-      localStorage.token = res.data.token
+      localStorage.setItem("token", res.data.token)
       login({ isAuth: true, _id: res.data.userId, email, nickname })
       changeDataStatus(status.successful)
     } else {
