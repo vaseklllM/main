@@ -1,10 +1,10 @@
 const { Router } = require("express")
 const router = Router()
-const bcrypt = require("bcryptjs")
 
 const getToken = require("../../funcs/getToken")
 
 const User = require("../../models/User")
+const createUser = require("../../DatabaseQueries/createUser")
 
 router.post("/registration", async (req, res) => {
   const { email, nickname, password } = req.body
@@ -56,9 +56,7 @@ router.post("/registration", async (req, res) => {
   }
 
   /** створення користувача */
-  const hashedPassword = await bcrypt.hash(password, 12)
-  const user = new User({ email, password: hashedPassword, nickname })
-  user.save()
+  const user = await createUser({ email, password, nickname })
 
   const token = getToken(user)
 
