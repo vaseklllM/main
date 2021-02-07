@@ -11,13 +11,17 @@ router.post("/addMonobankBankCard", checkAuth, async (req, res) => {
   const bankUserInfo = await getUserInfoByToken(token)
 
   if (!bankUserInfo.ok) {
-    res.status(403).json({ ok: false, message: "Неправильний токен" })
+    res.status(403).json({ message: "Неправильний токен" })
     return undefined
   }
 
-  addMonobankToken(req.user._financeId, token)
+  const isAdd = await addMonobankToken(req.user._financeId, token)
 
-  res.status(201).json({ ok: bankUserInfo.ok })
+  if (isAdd) {
+    res.status(201).json({ message: "Токен успішно добавлено" })
+  } else {
+    res.status(403).json({ message: "Такий токен вже існує" })
+  }
 })
 
 module.exports = router

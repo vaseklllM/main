@@ -30,7 +30,7 @@ export default function AddMonoBank(props: Props): ReactElement {
     if (value.length === 44) {
       setIsActiveToken(status.loading)
 
-      const res = await api.banks.monobank.getUserInfo(value)
+      const res = await api.finance.banks.monobank.getUserInfo(value)
       if (res.ok) {
         setCardData(res.data)
         setIsActiveToken(status.successful)
@@ -46,8 +46,9 @@ export default function AddMonoBank(props: Props): ReactElement {
     }
   }
 
-  function onSaveCards() {
-    console.log("save")
+  async function onSaveCards() {
+    const res = await api.finance.banks.monobank.addMonobankToken(token)
+    console.log(res)
   }
 
   return (

@@ -4,6 +4,7 @@ import getUserDataByToken from "./user/getActiveUserData"
 import getCurrencies from "./currencies/getCurrencies"
 import registration from "./user/registration"
 import getUserInfo from "./banks/monobank/getUserInfo"
+import addMonobankToken from "./banks/monobank/addMonobankToken"
 
 const api = {
   user: {
@@ -20,9 +21,14 @@ const api = {
     /** курси валют */
     getCurrencies,
   },
-  banks: {
-    monobank: {
-      getUserInfo,
+  /** блок фінансів */
+  finance: {
+    banks: {
+      monobank: {
+        getUserInfo,
+        /** добавлення токена від монобанку */
+        addMonobankToken,
+      },
     },
   },
 }
