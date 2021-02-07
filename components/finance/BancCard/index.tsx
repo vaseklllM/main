@@ -5,12 +5,19 @@ import { txt } from "../../../utils"
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons"
 import IStore from "../../../store/interface"
 import { connect } from "react-redux"
-import useResize from "../../../hocs/useResize"
+
+interface childrenFunc {
+  onClose: Function
+}
+
+type childrenFunction = ({ onClose }: childrenFunc) => ReactElement
+
+type TCheldren = ReactElement | ReactElement[] | childrenFunction
 
 interface Props {
   title?: string
   className?: string
-  children?: ReactElement | ReactElement[]
+  children?: TCheldren
   windowWidth: number
 }
 
@@ -30,9 +37,9 @@ function BancCard(props: Props): ReactElement {
   useEffect(() => {
     if (windowWidth !== 0) {
       if (bodyRef.current && isAdd) {
-        setBodyWidth(mainRef.current.offsetWidth)
+        setBodyWidth(mainRef.current?.offsetWidth ?? 0)
         setTimeout(() => {
-          setBodyHeight(bodyRef.current.offsetHeight)
+          setBodyHeight(bodyRef.current?.offsetHeight ?? 0)
         }, ANIMATION_TIME / 2)
       } else {
         setBodyWidth(0)
@@ -54,6 +61,17 @@ function BancCard(props: Props): ReactElement {
   }
 
   const t = ANIMATION_TIME / 1000
+
+  function onClose() {
+    setIsAdd(false)
+    setIsShowBody(false)
+  }
+
+  function getChildren() {
+    if (typeof children === "function") {
+      return children({ onClose })
+    } else return children
+  }
 
   return (
     <div className={classes.main} ref={mainRef}>
@@ -82,7 +100,7 @@ function BancCard(props: Props): ReactElement {
           {isShowBody && <div className={classes.hr} />}
           {isShowBody && (
             <div className={classes.body} ref={bodyRef}>
-              {children}
+              {getChildren()}
             </div>
           )}
         </div>

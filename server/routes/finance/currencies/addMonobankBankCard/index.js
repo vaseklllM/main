@@ -11,7 +11,7 @@ router.post("/addMonobankBankCard", checkAuth, async (req, res) => {
   const bankUserInfo = await getUserInfoByToken(token)
 
   if (!bankUserInfo.ok) {
-    res.status(403).json({ message: "Неправильний токен" })
+    res.status(403).json({ message: "Помилка при отриманні даних з монобанку" })
     return undefined
   }
 

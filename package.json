@@ -27,7 +27,8 @@
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "sass": "^1.32.5"
+    "sass": "^1.32.5",
+    "use-state-if-mounted": "^1.0.4"
   },
   "devDependencies": {
     "@types/node": "^14.14.22",
