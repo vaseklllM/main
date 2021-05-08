@@ -1,5 +1,5 @@
 const express = require("express")
-const { SERVER_PORT, DB_URL, FRONTEND_URL } = require("../utils/config")
+const { SERVER_PORT, DB_URL, FRONTEND_URL } = require("../../utils/config")
 const mongoose = require("mongoose")
 const createDefData = require("./createDefaultData")
 const cors = require("cors")

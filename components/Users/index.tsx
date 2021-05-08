@@ -7,7 +7,7 @@ import IStore from "../../store/interface"
 import ISUsers from "../../store/interface/users"
 import usersActions from "../../store/users/actions"
 import { txt } from "../../utils"
-import { status } from "../../utils/status"
+import { status } from "../../enums/status"
 import classes from "./style.module.scss"
 
 interface Props {

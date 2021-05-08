@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react"
 import { useSelector } from "react-redux"
 import IStore from "../../../../store/interface"
-import { status } from "../../../../utils/status"
+import { status } from "../../../../enums"
 
 interface Props {
   balance?: number

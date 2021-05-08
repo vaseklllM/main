@@ -1,4 +1,4 @@
-import { status } from "../../utils/status"
+import { status } from "../../enums/status"
 
 export interface ISAuthData {
   isAuth: boolean

@@ -1,4 +1,4 @@
-import { status } from "../../utils/status"
+import { status } from "../../enums/status"
 import ISUsers from "../interface/users"
 import types from "./types"
 

@@ -10,7 +10,7 @@ import authActions from "../../store/auth/actions"
 import { connect } from "react-redux"
 import { IActionLogin } from "../../store/auth/actions/login"
 import { useRouter } from "next/router"
-import { status } from "../../utils/status"
+import { status } from "../../enums/status"
 import { ISAuthData } from "../../store/interface/auth"
 
 const layout = {

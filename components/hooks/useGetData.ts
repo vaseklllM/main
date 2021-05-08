@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import ISDataStatus from "../../store/interface/dataStatus"
-import { status } from "../../utils/status"
+import { status } from "../../enums/status"
 
 interface IUseGetData {
   getData: () => any

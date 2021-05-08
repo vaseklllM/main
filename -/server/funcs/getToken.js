@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken")
-const { PASSPORT_SECRET_KEY } = require("../../utils/config")
+const { PASSPORT_SECRET_KEY } = require("../../../utils/config")
 
 function getToken(candidate) {
   const payload = { id: candidate._id, email: candidate.email }

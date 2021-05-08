@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 import { useSelector } from "react-redux"
 import IStore from "../store/interface"
 import { ISAuth } from "../store/interface/auth"
-import { status } from "../utils/status"
+import { status } from "../enums/status"
 
 /** Перевірка на авторизацію */
 export default function useCheckAuth() {

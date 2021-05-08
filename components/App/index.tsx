@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { status } from "../../utils/status"
+import { status } from "../../enums/status"
 import Categories from "../Categories"
 import NoUserApp from "./NoUserApp"
 

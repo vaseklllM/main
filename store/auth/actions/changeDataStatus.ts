@@ -1,4 +1,4 @@
-import { status } from "../../../utils/status"
+import { status } from "../../../enums/status"
 import types from "../types"
 
 export default function changeDataStatus(payload: status) {

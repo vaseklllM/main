@@ -4,7 +4,7 @@ import { Button } from "antd"
 import { connect } from "react-redux"
 import authActions from "../../../store/auth/actions"
 import { bindActionCreators } from "redux"
-import { status } from "../../../utils/status"
+import { status } from "../../../enums/status"
 
 interface Props {
   isAuth: boolean

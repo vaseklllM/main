@@ -6,7 +6,7 @@ import { HomeOutlined } from "@ant-design/icons"
 import { useRouter } from "next/router"
 import { useDispatch, useSelector } from "react-redux"
 import financeCoursesActions from "../../../store/finance/сurrencies/actions"
-import { status } from "../../../utils/status"
+import { status } from "../../../enums/status"
 import FinanceHeaderTitle from "./FinanceHeaderTitle"
 import IStore from "../../../store/interface"
 

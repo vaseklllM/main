@@ -2,7 +2,7 @@ const JwtStrategy = require("passport-jwt").Strategy
 const ExtractJwt = require("passport-jwt").ExtractJwt
 
 const User = require("./models/User")
-const { PASSPORT_SECRET_KEY } = require("../utils/config")
+const { PASSPORT_SECRET_KEY } = require("../../utils/config")
 
 const opts = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

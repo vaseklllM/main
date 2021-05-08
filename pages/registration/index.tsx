@@ -11,7 +11,7 @@ import { IActionLogin } from "../../store/auth/actions/login"
 import { bindActionCreators } from "redux"
 import IStore from "../../store/interface"
 import { ISAuth } from "../../store/interface/auth"
-import { status } from "../../utils/status"
+import { status } from "../../enums/status"
 import { useRouter } from "next/router"
 
 const formItemLayout = {

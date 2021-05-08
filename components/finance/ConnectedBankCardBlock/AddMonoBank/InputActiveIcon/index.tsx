@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react"
-import { status } from "../../../../../utils/status"
+import { status } from "../../../../../enums/status"
 import { LoadingOutlined } from "@ant-design/icons"
 
 interface Props {

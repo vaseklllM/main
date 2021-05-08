@@ -1,5 +1,5 @@
 import api from "../../../../api"
-import { status } from "../../../../utils/status"
+import { status } from "../../../../enums/status"
 import types from "../types"
 
 const getData = () => async (dispatch) => {

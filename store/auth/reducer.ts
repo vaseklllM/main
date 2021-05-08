@@ -1,4 +1,4 @@
-import { status } from "../../utils/status"
+import { status } from "../../enums/status"
 import { ISAuth } from "../interface/auth"
 import types from "./types"
 
